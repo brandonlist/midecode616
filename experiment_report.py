@@ -169,21 +169,21 @@ def compare_AAR_results(datasets,ch,out_file):
 
         clf_0 = joblib.load('subject'+str(j)+'_'+'best_AAR_estimator_LDA.m')
         score = clf_0.score(x_test.numpy(), y_test.numpy())
-        p0,cm0 = cm_plot(y=y_test.numpy(),yp=clf_0.predict(x_test.numpy()),classes=datasets.chi_names,sub=str(j+1),dataset=datasets.name,model='AAR_LDA',ch=ch,return_cm=True)
+        p0,cm0 = cm_plot(y=y_test.numpy(),yp=clf_0.predict(x_test.numpy()),classes=datasets.chi_names,sub=str(j+1),dataset=datasets.name,model='AAR_LDA',return_cm=True)
         p0.plot()
         cm0_all += cm0
         AAR_LDA_res.append(score)
 
         clf_1 = joblib.load('subject'+str(j)+'_'+'best_AAR_estimator_SVC.m')
         score = clf_1.score(x_test.numpy(), y_test.numpy())
-        p1,cm1 = cm_plot(y=y_test.numpy(),yp=clf_1.predict(x_test.numpy()),classes=datasets.chi_names,sub=str(j+1),dataset=datasets.name,model='AAR_SVC',ch=ch,return_cm=True)
+        p1,cm1 = cm_plot(y=y_test.numpy(),yp=clf_1.predict(x_test.numpy()),classes=datasets.chi_names,sub=str(j+1),dataset=datasets.name,model='AAR_SVC',return_cm=True)
         p1.plot()
         cm1_all += cm1
         AAR_SVC_res.append(score)
 
         clf_2 = joblib.load('subject'+str(j)+'_'+'best_AAR_estimator_KNN.m')
         score = clf_2.score(x_test.numpy(), y_test.numpy())
-        p2,cm2 = cm_plot(y=y_test.numpy(),yp=clf_2.predict(x_test.numpy()),classes=datasets.chi_names,sub=str(j+1),dataset=datasets.name,model='AAR_KNN',ch=ch,return_cm=True)
+        p2,cm2 = cm_plot(y=y_test.numpy(),yp=clf_2.predict(x_test.numpy()),classes=datasets.chi_names,sub=str(j+1),dataset=datasets.name,model='AAR_KNN',return_cm=True)
         p2.plot()
         cm2_all += cm2
         AAR_KNN_res.append(score)

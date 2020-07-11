@@ -39,7 +39,7 @@ def get_one_para(paras):
                         paras_ret.append(({key0:paras[key0][i]},{key1:paras[key1][j]},{key2:paras[key2][k]},{key3:paras[key3][l]}))
     return paras_ret
 
-def plot_module_selection(title,hyperparas,means,stds,width=0.25,save=False,ch=0.1):
+def plot_module_selection(title,hyperparas,means,stds,width=0.25,save=False):
     """
 
     :param title:
@@ -56,7 +56,7 @@ def plot_module_selection(title,hyperparas,means,stds,width=0.25,save=False,ch=0
         labels.append('S'+str(i+1))
     x = np.arange(len(labels)) # the label locations
 
-    means = list(np.array(means)+ch)
+    means = list(np.array(means))
 
     fig, ax = plt.subplots()
     err_attr = {"elinewidth": 2, "ecolor": "black", "capsize": n_hp}
@@ -89,7 +89,7 @@ def logits_to_pred(model,x):
     return pred
 
 
-def plot_acc_bars(title,model_names,means,width=0.25,save=False,ch=0.5):
+def plot_acc_bars(title,model_names,means,width=0.25,save=False):
     """
 
     :param title:
@@ -106,7 +106,7 @@ def plot_acc_bars(title,model_names,means,width=0.25,save=False,ch=0.5):
         labels.append('S'+str(i+1))
     x = np.arange(len(labels)) # the label locations
 
-    means = list(np.array(means)+(1-np.array(means))*ch)
+    means = list(np.array(means))
 
     fig, ax = plt.subplots()
     rects = []
@@ -131,7 +131,7 @@ def plot_acc_bars(title,model_names,means,width=0.25,save=False,ch=0.5):
     plt.show()
 
 
-def plot_acc_bars_no_anno(title,model_names,means,width=0.25,save=False,ch=0.5):
+def plot_acc_bars_no_anno(title,model_names,means,width=0.25,save=False):
     """
 
     :param title:
@@ -148,7 +148,7 @@ def plot_acc_bars_no_anno(title,model_names,means,width=0.25,save=False,ch=0.5):
         labels.append('S'+str(i+1))
     x = np.arange(len(labels)) # the label locations
 
-    means = list(np.array(means)+(1-np.array(means))*ch)
+    means = list(np.array(means))
 
     fig, ax = plt.subplots()
     rects = []

@@ -149,7 +149,7 @@ def fit_AAR_module(log_name,datasets,model,out_file,**kwargs):
         plot_module_selection(str(model) + '_selection for '+str(datasets.name), paras_AAR_sub, means_AAR, stds_AAR, width=0.8,
                               save=True)
 
-def compare_AAR_results(datasets,ch,out_file):
+def compare_AAR_results(datasets,out_file):
     ch_dict = {'AR_LDA':'使用线性判别分析的自回归模型','AR_SVC':'使用支持向量机的自回归模型','AR_KNN':'使用k最近邻分类器的自回归模型'}
     subject_datasets = []
     for i in range(datasets.n_subject):
@@ -194,12 +194,12 @@ def compare_AAR_results(datasets,ch,out_file):
     max_arg_para = np.array(res).mean(axis=1).argmax()
     max_res_sub = np.array(res).mean(axis=0).max()
     max_arg_sub = np.array(res).mean(axis=0).argmax()
-    out_file.write('在数据集'+str(datasets.name)+'上评估自回归模型的泛化表现,结果显示：表现最佳的模型是'+str(ch_dict[models[max_arg_para]])+'，在'+str(datasets.n_subject)+'名被试中的平均准确率达到'+str('{:.2f}').format(max_res_para+ch)+'。')
-    out_file.write('第'+str(max_arg_sub+1)+'名被试表现最佳，平均准确率达到'+str('{:.2f}').format(max_res_sub+ch)+'。\n')
+    out_file.write('在数据集'+str(datasets.name)+'上评估自回归模型的泛化表现,结果显示：表现最佳的模型是'+str(ch_dict[models[max_arg_para]])+'，在'+str(datasets.n_subject)+'名被试中的平均准确率达到'+str('{:.2f}').format(max_res_para)+'。')
+    out_file.write('第'+str(max_arg_sub+1)+'名被试表现最佳，平均准确率达到'+str('{:.2f}').format(max_res_sub)+'。\n')
     all_cm_plot(cm=cm0_all,dataset=datasets,classes=datasets.chi_names,model='AR_LDA')
     all_cm_plot(cm=cm1_all, dataset=datasets, classes=datasets.chi_names, model='AR_SVC')
     all_cm_plot(cm=cm2_all, dataset=datasets, classes=datasets.chi_names, model='AR_KNN')
-    plot_acc_bars( datasets.name+'数据集的分类结果' , models , res, width=0.8, ch=ch,
+    plot_acc_bars( datasets.name+'数据集的分类结果' , models , res, width=0.8,
                   save=True)
 
 def fit_CSP_module(log_name,datasets,model,out_file,**kwargs):

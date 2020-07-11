@@ -312,7 +312,7 @@ class FBCSPNet(nn.Module):
             kappa = total_kappa / total_loop
             return accuracy, kappa
 
-    def fit(self,train_dataset, batch_size, max_epoch, valid_dataset=None, test_dataset=None, log_path=None ,reg =None,ch=0.3,save_name='fbcspnet.pth'):
+    def fit(self,train_dataset, batch_size, max_epoch, valid_dataset=None, test_dataset=None, log_path=None ,reg =None,save_name='fbcspnet.pth'):
         """
         fit the model to the dataset
         :param dataset:torch.utils.data.Dateset
@@ -365,8 +365,8 @@ class FBCSPNet(nn.Module):
             # test trainning acuracy
             train_acc, kappa = self.evaluate_train(test_dataset=train_dataset, batch_size=batch_size)
             test_acc, _ = self.evaluate_train(test_dataset=test_dataset, batch_size=batch_size)
-            viz.line([train_acc.item()+(1-train_acc.item())*ch], [global_step], win='train_acc', update='append')
-            viz.line([test_acc.item()+(1-train_acc.item())*ch], [global_step], win='test_acc', update='append')
+            viz.line([train_acc.item()], [global_step], win='train_acc', update='append')
+            viz.line([test_acc.item()], [global_step], win='test_acc', update='append')
             viz.line([kappa.item()], [global_step], win='train_kappa', update='append')
 
             # save model
@@ -653,7 +653,7 @@ class FBCSPNet_for_show(nn.Module):
 
 
 
-    def fit(self,train_dataset, batch_size, max_epoch, pos,valid_dataset=None, test_dataset=None, log_path=None ,reg =None,ch=0.3,):
+    def fit(self,train_dataset, batch_size, max_epoch, pos,valid_dataset=None, test_dataset=None, log_path=None ,reg =None):
         """
         fit the model to the dataset
         :param dataset:torch.utils.data.Dateset
@@ -706,8 +706,8 @@ class FBCSPNet_for_show(nn.Module):
             # test trainning acuracy
             train_acc, kappa = self.evaluate_train(test_dataset=train_dataset, batch_size=batch_size)
             test_acc, _ = self.evaluate_train(test_dataset=test_dataset, batch_size=batch_size)
-            viz.line([train_acc.item()+(1-train_acc.item())*ch], [global_step], win='train_acc', update='append')
-            viz.line([test_acc.item()+(1-train_acc.item())*ch], [global_step], win='test_acc', update='append')
+            viz.line([train_acc.item()], [global_step], win='train_acc', update='append')
+            viz.line([test_acc.item()], [global_step], win='test_acc', update='append')
             viz.line([kappa.item()], [global_step], win='train_kappa', update='append')
 
             #visualize topo-scalp
@@ -1002,7 +1002,7 @@ class deep_FBCSPNet(nn.Module):
             kappa = total_kappa / total_loop
             return accuracy, kappa
 
-    def fit(self, train_dataset, batch_size, max_epoch, valid_dataset=None, test_dataset=None, log_path=None, reg=None,ch=0.4,save_name='deep_fbcspnet.pth'):
+    def fit(self, train_dataset, batch_size, max_epoch, valid_dataset=None, test_dataset=None, log_path=None, reg=None,save_name='deep_fbcspnet.pth'):
         """
         fit the model to the dataset
         :param dataset:torch.utils.data.Dateset
@@ -1056,8 +1056,8 @@ class deep_FBCSPNet(nn.Module):
             # test trainning acuracy
             train_acc, kappa = self.evaluate_train(test_dataset=train_dataset, batch_size=batch_size)
             test_acc, _ = self.evaluate_train(test_dataset=test_dataset, batch_size=batch_size)
-            viz.line([train_acc.item()+(1-train_acc.item())*ch], [global_step], win='train_acc', update='append')
-            viz.line([test_acc.item()+(1-train_acc.item())*ch], [global_step], win='test_acc', update='append')
+            viz.line([train_acc.item()], [global_step], win='train_acc', update='append')
+            viz.line([test_acc.item()], [global_step], win='test_acc', update='append')
             viz.line([kappa.item()], [global_step], win='train_kappa', update='append')
 
             # save model
@@ -1156,7 +1156,7 @@ class EEGNet(nn.Module):
         vis_graph = torchvis.make_dot(model(dummy), params=dict(model.named_parameters()))
         vis_graph.view()
 
-    def fit(self,train_dataset, batch_size, max_epoch, valid_dataset=None, test_dataset=None, log_path=None ,ch=0,save_name='eegnet.pth'):
+    def fit(self,train_dataset, batch_size, max_epoch, valid_dataset=None, test_dataset=None, log_path=None,save_name='eegnet.pth'):
         """
         fit the model to the dataset
         :param dataset:torch.utils.data.Dateset
@@ -1209,8 +1209,8 @@ class EEGNet(nn.Module):
             # test trainning acuracy
             train_acc, kappa = self.evaluate_train(test_dataset=train_dataset, batch_size=batch_size)
             test_acc, _ = self.evaluate_train(test_dataset=test_dataset, batch_size=batch_size)
-            viz.line([train_acc.item()+(1-train_acc.item())*ch], [global_step], win='train_acc', update='append')
-            viz.line([test_acc.item()+(1-train_acc.item())*ch], [global_step], win='test_acc', update='append')
+            viz.line([train_acc.item()], [global_step], win='train_acc', update='append')
+            viz.line([test_acc.item()], [global_step], win='test_acc', update='append')
             viz.line([kappa.item()], [global_step], win='train_kappa', update='append')
 
             # save model
@@ -1568,7 +1568,7 @@ class Point_wiseLSTM(nn.Module):
             kappa = total_kappa / total_loop
             return accuracy, kappa
 
-    def fit(self,train_dataset, batch_size, max_epoch, valid_dataset=None, test_dataset=None, log_path=None ,reg =None,env = None ,ch=0):
+    def fit(self,train_dataset, batch_size, max_epoch, valid_dataset=None, test_dataset=None, log_path=None ,reg =None,env = None ):
         """
         fit the model to the dataset
         :param dataset:torch.utils.data.Dateset
@@ -1628,9 +1628,9 @@ class Point_wiseLSTM(nn.Module):
             # test trainning acuracy
             train_acc, kappa = self.evaluate_train(test_dataset=train_dataset, batch_size=batch_size)
             test_acc, _ = self.evaluate_train(test_dataset=test_dataset, batch_size=batch_size)
-            viz.line([train_acc.item()+ch], [global_step], win='train_acc', update='append')
-            viz.line([test_acc.item()+ch], [global_step], win='test_acc', update='append')
-            viz.line([kappa.item()+ch], [global_step], win='train_kappa', update='append')
+            viz.line([train_acc.item()], [global_step], win='train_acc', update='append')
+            viz.line([test_acc.item()], [global_step], win='test_acc', update='append')
+            viz.line([kappa.item()], [global_step], win='train_kappa', update='append')
 
             # save model
             if test_acc.item() > best_acc:
